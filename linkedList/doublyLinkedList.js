@@ -48,4 +48,5 @@ class DoublyLinkedList extends LinkedList {
 const doublyList = new DoublyLinkedList();
 doublyList.insert("小红", 0);
 doublyList.insert("小明", 1);
+doublyList.insert("小强", 2);
 console.log(doublyList.toString());

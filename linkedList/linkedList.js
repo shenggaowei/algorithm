@@ -1,5 +1,5 @@
-import { Node } from "./utils/node.mjs";
-import { defaultEquals } from "./utils/lodash.mjs";
+import { Node } from "./utils/node.js";
+import { defaultEquals } from "./utils/lodash.js";
 
 export default class LinkedList {
   constructor(equalsFn = defaultEquals) {
@@ -107,12 +107,3 @@ export default class LinkedList {
     return objString;
   }
 }
-
-const list = new LinkedList();
-list.push("嘻嘻1");
-list.push("哈哈2");
-list.push("嘻嘻3");
-list.push("哈哈3");
-list.insert("嘻嘻4", 2);
-console.log(JSON.stringify(list.head));
-console.log(list.toString());

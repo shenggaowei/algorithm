@@ -43,10 +43,40 @@ class DoublyLinkedList extends LinkedList {
     }
     return false;
   }
+
+  remove(index) {
+    // 1 越界检查
+    // 2 在头删除
+    // 3 在尾删除
+    // 4 在中间删除
+    if (index == 0) {
+      const current = this.head;
+      if (this.count === 0) {
+        this.head = undefined;
+      } else {
+        this.head = current.next;
+        this.head.prev = undefined;
+      }
+    } else if (index === this.count - 1) {
+      const current = this.tail;
+      const previous = current.prev;
+      previous.next = undefined;
+      this.tail = previous;
+    } else {
+      const current = this.getElementAt(index);
+      const previous = current.prev;
+      const next = current.next;
+      previous.next = next;
+      next.prev = previous;
+    }
+    this.count--;
+  }
 }
 
 const doublyList = new DoublyLinkedList();
 doublyList.insert("小红", 0);
 doublyList.insert("小明", 1);
 doublyList.insert("小强", 2);
+console.log(doublyList.toString());
+doublyList.remove(1);
 console.log(doublyList.toString());

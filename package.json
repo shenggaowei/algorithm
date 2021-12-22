@@ -2,5 +2,8 @@
   "type": "module",
   "dependencies": {
     "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0"
   }
 }

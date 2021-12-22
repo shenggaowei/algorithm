@@ -4,7 +4,7 @@ import { defaultEquals } from "./utils/lodash.js";
 export default class LinkedList {
   constructor(equalsFn = defaultEquals) {
     this.count = 0;
-    this.head = null;
+    this.head = undefined;
     this.equalsFn = equalsFn;
   }
 
@@ -35,12 +35,13 @@ export default class LinkedList {
   }
 
   insert(element, index) {
-    if (index >= 0 && index < this.count) {
+    if (index >= 0 && index <= this.count) {
       const node = new Node(element);
       let cur = this.head;
       if (index === 0) {
         node.next = cur;
         this.head = node;
+        debugger;
       } else {
         const pre = this.getElementAt(index - 1);
         node.next = pre.next;
@@ -65,15 +66,16 @@ export default class LinkedList {
 
   removeAt(index) {
     if (index >= 0 && index < this.count) {
-      let cur = this.head;
+      let current = this.head;
       if (index === 0) {
-        this.head = cur.next;
+        this.head = current.next;
       } else {
         const pre = this.getElementAt(index - 1);
-        cur = pre.next;
-        pre.next = cur.next;
+        current = pre.next;
+        pre.next = current.next;
       }
       this.count--;
+      return current;
     }
   }
 

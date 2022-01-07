@@ -114,6 +114,16 @@ class BinarySearchTree {
       return true;
     }
   }
+
+  remove(key) {
+    return this.removeNode(this.root, key);
+  }
+
+  removeNode(node, key) {
+    if (node === null) {
+      return node;
+    }
+  }
 }
 
 const tree = new BinarySearchTree();

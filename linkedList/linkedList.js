@@ -41,7 +41,6 @@ export default class LinkedList {
       if (index === 0) {
         node.next = cur;
         this.head = node;
-        debugger;
       } else {
         const pre = this.getElementAt(index - 1);
         node.next = pre.next;

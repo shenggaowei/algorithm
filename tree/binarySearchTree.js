@@ -83,6 +83,15 @@ class BinarySearchTree {
     return current.key;
   }
 
+  // 获取最小的节点
+  findMinNode(node) {
+    let current = node;
+    while (current.left) {
+      current = current.left;
+    }
+    return current;
+  }
+
   max() {
     return this.maxNode(this.root);
   }
@@ -123,14 +132,50 @@ class BinarySearchTree {
     if (node === null) {
       return node;
     }
+    // 如果 key 在左边。
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      node.left = this.removeNode(node.left, key);
+      return node;
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      node.right = this.removeNode(node.right, key);
+      return node;
+    } else {
+      if (node.left === null && node.right === null) {
+        // 移除根节点
+        node = null;
+        return node;
+      } else if (node.right === null) {
+        // 有左节点
+        node = node.left;
+        return node;
+      } else if (node.left === null) {
+        // 有右节点
+        node = node.right;
+        return node;
+      } else {
+        // 移除中间节点
+        let minNode = this.findMinNode(node.right);
+        node.key = minNode.key;
+        node.right = this.removeNode(node.right, minNode.key);
+        return node;
+      }
+    }
   }
 }
 
 const tree = new BinarySearchTree();
 
-tree.insert(11);
 tree.insert(7);
 tree.insert(15);
+tree.insert(5);
+tree.insert(3);
+tree.insert(9);
+tree.insert(8);
+tree.insert(10);
+tree.insert(13);
+tree.insert(12);
+tree.insert(14);
+tree.insert(20);
 tree.insert(18);
 tree.insert(25);
 tree.insert(6);
@@ -141,10 +186,12 @@ const max = tree.max();
 console.log("tree的最大值和最小值分别是=>", max, min);
 let ret = (key) => (tree.search(key) ? `${key}存在` : `${key}不存在`);
 
-console.log(ret(7));
-console.log(ret(29));
 console.log(ret(18));
 console.log(ret(0));
+
+console.log(JSON.stringify(tree.root));
+tree.remove(15);
+console.log(JSON.stringify(tree.root));
 /**
  * 递归
  * 要想理解递归，首先要理解递归

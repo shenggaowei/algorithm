@@ -1,7 +1,7 @@
 import { Compare, defaultCompareFn } from "./utils/lodash.js";
 import { Node } from "./utils/node.js";
 
-class BinarySearchTree {
+export default class BinarySearchTree {
   constructor(compareFn = defaultCompareFn) {
     this.compareFn = compareFn;
     this.root = null;

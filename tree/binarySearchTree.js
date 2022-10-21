@@ -35,7 +35,7 @@ export default class BinarySearchTree {
     this.inOrderTraverseNode(this.root, callback);
   }
 
-  // 中序遍历
+  // 中序遍历(左中右)
   inOrderTraverseNode(node, callback) {
     if (node !== null) {
       this.inOrderTraverseNode(node.left, callback);
@@ -48,7 +48,7 @@ export default class BinarySearchTree {
     this.preOrderTraverseNode(this.root, callback);
   }
 
-  // 先序遍历
+  // 先序遍历(中左右)
   preOrderTraverseNode(node, callback) {
     if (node !== null) {
       callback(node.key);
@@ -61,7 +61,7 @@ export default class BinarySearchTree {
     this.postOrderTraverseNode(this.root, callback);
   }
 
-  // 后序遍历
+  // 后序遍历(左右中)
   postOrderTraverseNode(node, callback) {
     if (node !== null) {
       this.postOrderTraverseNode(node.left, callback);
